@@ -2,27 +2,27 @@ var DnaTranscriber = function(input) {
   this.value = input;
 };
 
-DnaTranscriber.prototype.toRna = function() {
-  var answer = "";
-  return this.value;
-  for (var i = 0; i < value.length; i++) {
-    if (this.value[i] === "A") {
-      answer.concat("U");
+DnaTranscriber.prototype.toRna = function(string) {
+  var answer = [];
+
+  for (var i = 0; i < string.length; i++) {
+    if (string[i] === "A") {
+      answer.push("U");
     }
-    if (this.value[i] === "T") {
-      answer.concat("A");
+    if (string[i] === "T") {
+      answer.push("A");
     }
-    if (this.value[i] === "C") {
-      answer.concat("G");
+    if (string[i] === "C") {
+      answer.push("G");
     }
-    if (this.value[i] === "G") {
-      answer.concat("C");
+    if (string[i] === "G") {
+      answer.push("C");
     }
   }
-  if (answer === "" || answer.length !== value.length) {
-    return "Invalid input";
+  if (answer === "" || answer.length !== string.length) {
+    throw Error("Invalid input");
   }
-  return answer;
+  return answer.join("");
 };
 
 module.exports = DnaTranscriber;
