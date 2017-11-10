@@ -1,37 +1,24 @@
-var Cipher = function() {
-  var key = "";
-  var possible =
-    //"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    "abcdefghijklmnopqrstuvwxyz";
-  for (var i = 0; i < 10; i++)
-    key += possible.charAt(Math.floor(Math.random() * possible.length));
+var Cipher = function(key) {
   this.key = key;
 };
 
-Cipher.prototype.encode = function() {
-  if (this.value % 400 === 0) {
-    return true;
+Cipher.prototype.encode = function(string) {
+  var answer = [];
+  var alpha = "abcdefghijklmnopqrstuvwxyz";
+  for (var i = 0; i < string.length; i++) {
+    for (var j = 0; j < alpha.length; j++) {
+      if (alpha[i] === string[i]) {
+        answer.push(alpha[i + 3]);
+        break;
+      } else {
+        j++;
+      }
+    }
+    i++;
   }
-  if (this.value % 100 === 0) {
-    return false;
-  }
-  if (this.value % 4 === 0) {
-    return true;
-  }
-  return false;
+  return answer.join("");
 };
 
-Cipher.prototype.decode = function() {
-  if (this.value % 400 === 0) {
-    return true;
-  }
-  if (this.value % 100 === 0) {
-    return false;
-  }
-  if (this.value % 4 === 0) {
-    return true;
-  }
-  return false;
-};
+Cipher.prototype.decode = function() {};
 
 module.exports = Cipher;
